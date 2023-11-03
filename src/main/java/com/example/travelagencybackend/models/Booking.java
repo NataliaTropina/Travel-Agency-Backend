@@ -14,24 +14,16 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@Document(collection = "users")
-public class User {
-
-    public enum Role {
-        USER, ADMIN
-    }
+@Document(collection = "bookings")
+public class Booking {
 
     @Id
     private String id;
-    private String firstName;
-    private String lastName;
     private LocalDate createdDate;
-    private String email;
-    private List<Comment> comments;
-    private List<Booking> bookings;
-    private Role role;
-    private String hashPassword;
-
+    private User user;
+    private List<Destination> destinations;
+    private double totalPrice;
+    private LocalDate startDate;
+    private LocalDate endDate;
 
 }
-

@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.*;
+import java.time.LocalDate;
 
 @Data
 @AllArgsConstructor
@@ -18,6 +19,10 @@ public class NewUserDto {
     @NotNull
     @NotBlank
     private String email;
+    private String firstName;
+    private String lastName;
+    private String phone;
+    private LocalDate createdDate;
 
     @Schema(description = "Пароль пользователя", example = "qwerty007")
     @NotBlank

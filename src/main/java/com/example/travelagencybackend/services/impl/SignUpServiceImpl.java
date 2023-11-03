@@ -23,11 +23,10 @@ public class SignUpServiceImpl implements SignUpService {
         User user = User.builder()
                 .email(newUser.getEmail())
                 .hashPassword(passwordEncoder.encode(newUser.getPassword()))
-                .role(User.Role.USER)
                 .build();
 
         usersRepository.save(user);
 
-        return from(user);
+        return UserDto.from(user);
     }
 }
