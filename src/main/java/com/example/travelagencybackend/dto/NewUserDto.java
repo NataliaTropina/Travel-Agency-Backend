@@ -21,7 +21,6 @@ public class NewUserDto {
     private String email;
     private String firstName;
     private String lastName;
-    private String phone;
     private LocalDate createdDate;
 
     @Schema(description = "Пароль пользователя", example = "qwerty007")
