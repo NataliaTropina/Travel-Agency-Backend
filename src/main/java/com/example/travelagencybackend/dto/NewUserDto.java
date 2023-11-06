@@ -14,7 +14,7 @@ import java.time.LocalDate;
 @NoArgsConstructor
 public class NewUserDto {
 
-    @Schema(description = "Email пользователя", example = "simple@mail.com")
+    @Schema(description = "users Email", example = "simple@mail.com")
     @Email
     @NotNull
     @NotBlank
@@ -24,7 +24,7 @@ public class NewUserDto {
     private String phone;
     private LocalDate createdDate;
 
-    @Schema(description = "Пароль пользователя", example = "qwerty007")
+    @Schema(description = "users password", example = "qwerty007")
     @NotBlank
     @Size(min = 7, max = 1000)
     @Pattern(regexp = "^(?=.*[A-Z])(?=.*[a-z])(?=.*\\d)(?=.*[@#$%^&+=!])(?=\\S+$).{8,}$", message = "Weak password")
