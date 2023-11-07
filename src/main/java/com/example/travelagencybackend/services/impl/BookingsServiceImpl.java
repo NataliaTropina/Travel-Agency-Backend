@@ -8,17 +8,15 @@ import com.example.travelagencybackend.models.Booking;
 import com.example.travelagencybackend.models.Destination;
 import com.example.travelagencybackend.models.User;
 import com.example.travelagencybackend.repositories.BookingsRepository;
-import com.example.travelagencybackend.repositories.DestinationsRepository;
 import com.example.travelagencybackend.repositories.UsersRepository;
+import com.example.travelagencybackend.repositories.DestinationsRepository;
 import com.example.travelagencybackend.security.details.AuthenticatedUser;
 import com.example.travelagencybackend.services.BookingsService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Optional;
 
 import static com.example.travelagencybackend.dto.BookingDto.from;
 
@@ -31,6 +29,7 @@ public class BookingsServiceImpl implements BookingsService {
     private final UsersRepository usersRepository;
 
     private final DestinationsRepository destinationsRepository;
+
 
 
     @Override

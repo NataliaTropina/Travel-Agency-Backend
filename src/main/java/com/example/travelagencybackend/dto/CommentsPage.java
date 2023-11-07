@@ -6,12 +6,13 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 @Builder
-@Schema(name = "StandardResponseDto", description = "request details")
-public class StandardResponseDto {
-    @Schema(description = "Message text")
-    private String message;
+public class CommentsPage {
+    @Schema(description = "page with all comments")
+    private List<CommentDto> data;
 }
