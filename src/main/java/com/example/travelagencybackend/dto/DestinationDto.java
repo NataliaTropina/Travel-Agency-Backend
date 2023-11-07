@@ -21,12 +21,11 @@ public class DestinationDto {
 
     @Schema(description = "destination identifier", example = "1")
     private String id;
-
     private String city;
     private String description;
     private String imageUrl;
     private double price;
-    private List<String> commentIds;
+  //  private List<String> commentIds;
 
     public static DestinationDto from(Destination destination) {
         return DestinationDto.builder()
@@ -35,7 +34,7 @@ public class DestinationDto {
                 .description(destination.getDescription())
                 .imageUrl(destination.getImageUrl())
                 .price(destination.getPrice())
-                .commentIds(destination.getComments().stream().map(Comment::getId).collect(Collectors.toList()))
+             //   .commentIds(destination.getComments().stream().map(Comment::getId).collect(Collectors.toList()))
                 .build();
     }
 

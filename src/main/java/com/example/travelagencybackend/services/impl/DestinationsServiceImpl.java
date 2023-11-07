@@ -4,18 +4,19 @@ import com.example.travelagencybackend.dto.DestinationDto;
 import com.example.travelagencybackend.dto.DestinationsPage;
 import com.example.travelagencybackend.dto.NewDestinationDto;
 import com.example.travelagencybackend.models.Destination;
-import com.example.travelagencybackend.repositories.DestinationRepository;
+import com.example.travelagencybackend.repositories.DestinationsRepository;
 import com.example.travelagencybackend.services.DestinationsService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RequiredArgsConstructor
 @Service
 public class DestinationsServiceImpl implements DestinationsService {
 
-    private final DestinationRepository destinationRepository;
+    private final DestinationsRepository destinationsRepository;
 
     @Override
     public DestinationDto createDestination(NewDestinationDto newDestination) {
@@ -25,14 +26,14 @@ public class DestinationsServiceImpl implements DestinationsService {
                 .imageUrl(newDestination.getImageUrl())
                 .price(newDestination.getPrice())
                 .build();
-        destinationRepository.save(destination);
+        destinationsRepository.save(destination);
         return DestinationDto.from(destination);
     }
 
 
     @Override
     public DestinationsPage findAll() {
-        List<Destination> destinations = destinationRepository.findAll();
+        List<Destination> destinations = destinationsRepository.findAll();
       return DestinationsPage
               .builder()
               .data(DestinationDto.from(destinations))
@@ -40,9 +41,9 @@ public class DestinationsServiceImpl implements DestinationsService {
     }
 
     @Override
-    public DestinationsPage findByCityOrDescription(String str) {
-        String findStr = '%' + str.toLowerCase() + '%';
-        List<Destination> destinations = destinationRepository.findByCityOrDescription(findStr);
+    public DestinationsPage findByCity(String str) {
+
+        List<Destination> destinations = destinationsRepository.findByCity(str);
         return DestinationsPage
                 .builder()
                 .data(DestinationDto.from(destinations))

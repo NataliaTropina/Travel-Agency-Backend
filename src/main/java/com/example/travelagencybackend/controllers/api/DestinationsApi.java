@@ -12,6 +12,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import io.swagger.v3.oas.annotations.tags.Tags;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 @Tags(value = {
@@ -22,7 +23,7 @@ public interface DestinationsApi {
 
     @Operation(summary = "Create a new destination")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "201", description = "Create new destination",
+            @ApiResponse(responseCode = "201", description = "Create a new destination",
                     content = {
                             @Content(mediaType = "application/json",
                                     schema = @Schema(implementation = DestinationDto.class))
@@ -58,10 +59,11 @@ public interface DestinationsApi {
                     }
             )
     })
+
     @GetMapping
     DestinationsPage findAll();
 
-    @Operation(summary = "Get a destinations by name or descrption", description = "Available to everyone")
+    @Operation(summary = "Get a destinations by city ", description = "Available to everyone")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Destination finded",
                     content = {
@@ -76,7 +78,8 @@ public interface DestinationsApi {
                     }
             )
     })
-    @GetMapping("/search/{str}")
-    DestinationsPage findByCityOrDescription(@PathVariable String str);
+
+    @GetMapping(value = "/search/{str}")
+    DestinationsPage findByCity(@PathVariable String str);
 
 }

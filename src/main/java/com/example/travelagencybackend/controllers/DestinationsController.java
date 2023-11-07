@@ -28,9 +28,8 @@ public class DestinationsController implements DestinationsApi {
     }
 
     @Override
-  //  @GetMapping("/search/{str}")
-    public DestinationsPage findByCityOrDescription(@PathVariable String str) {
-        return destinationsService.findByCityOrDescription(str);
+    public DestinationsPage findByCity(@PathVariable String str) {
+        return destinationsService.findByCity(str);
     }
 
 }
