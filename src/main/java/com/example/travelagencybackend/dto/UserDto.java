@@ -14,11 +14,11 @@ import java.util.stream.Collectors;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@Schema(description = "Зарегистрированный пользователь")
+@Schema(description = "Registered user")
 public class UserDto {
-    @Schema(description = "идентификатор пользователя", example = "1")
+    @Schema(description = "User ID", example = "1")
     private String id;
-    @Schema(description = "имя пользователя", example = "username")
+    @Schema(description = "Users name", example = "username")
     private String email;
     public static UserDto from(User user) {
         return UserDto.builder()
