@@ -18,7 +18,7 @@ import java.util.List;
 public class User {
 
     public enum Role {
-        USER, ADMIN
+        USER, ADMIN, GUEST
     }
 
     @Id
