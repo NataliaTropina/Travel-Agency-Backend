@@ -1,6 +1,7 @@
 package com.example.travelagencybackend.services.impl;
 
 import com.example.travelagencybackend.dto.*;
+import com.example.travelagencybackend.exceptions.NotFoundException;
 import com.example.travelagencybackend.models.Comment;
 import com.example.travelagencybackend.models.Destination;
 import com.example.travelagencybackend.models.User;
@@ -29,10 +30,12 @@ public class CommentsServiceImpl implements CommentsService {
     @Override
    public CommentDto createComment(NewCommentDto newComment, AuthenticatedUser currentUser,String destinationId) {
 
-       User user = usersRepository.findById(currentUser.getUser().getId()).get();
-            //   .orElseThrow(()->
-              //         new NotFoundException("User with id <" + currentUser.getUser().getId() + "> not found"));
-       Destination destination = destinationsRepository.findById(destinationId).get();
+       User user = usersRepository.findById(currentUser.getUser().getId())
+               .orElseThrow(()->
+                      new NotFoundException("User with id <" + currentUser.getUser().getId() + "> not found"));
+       Destination destination = destinationsRepository.findById(destinationId)
+               .orElseThrow(()->
+                       new NotFoundException("Destination with id <" + destinationId + "> not found"));
 
            Comment comment = Comment.builder()
                    .createdDate(LocalDate.now())

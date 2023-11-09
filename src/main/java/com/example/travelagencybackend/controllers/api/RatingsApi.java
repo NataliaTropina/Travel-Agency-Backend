@@ -3,8 +3,10 @@ package com.example.travelagencybackend.controllers.api;
 import com.example.travelagencybackend.dto.BookingDto;
 import com.example.travelagencybackend.dto.NewRatingDto;
 import com.example.travelagencybackend.dto.RatingDto;
+import com.example.travelagencybackend.security.details.AuthenticatedUser;
 import com.example.travelagencybackend.validation.dto.ValidationErrorsDto;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -13,11 +15,11 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import io.swagger.v3.oas.annotations.tags.Tags;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.web.bind.annotation.*;
 
 @Tags(value = {
-        @Tag(name = "Bookings")
+        @Tag(name = "Ratings")
 })
 @RequestMapping("/api/ratings")
 public interface RatingsApi {
@@ -37,6 +39,25 @@ public interface RatingsApi {
     })
     @PreAuthorize("isAuthenticated()")
     @PostMapping
-    ResponseEntity<RatingDto> createRating (NewRatingDto newRatingDto, int value, String destinationId);
+    ResponseEntity<RatingDto> createRating (@Parameter(hidden = true)
+                                            @AuthenticationPrincipal AuthenticatedUser currentUser,
+                                            @RequestBody NewRatingDto newRatingDto, String destinationId);
 
+
+    @Operation(summary = "Update Rating by id", description = "available only to authenticated user")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Update Booking",
+                    content = {
+                            @Content(mediaType = "application/json",
+                                    schema = @Schema(implementation = BookingDto.class))
+                    }
+            )
+    })
+
+    @PreAuthorize("isAuthenticated()")
+    @PutMapping(value = "/{id}")
+    ResponseEntity<RatingDto> updateRatingById (@RequestBody NewRatingDto newRating,
+                                                @PathVariable("id") String ratingId,
+                                                @Parameter(hidden = true)
+                                                @AuthenticationPrincipal AuthenticatedUser currentUser);
 }

@@ -25,7 +25,8 @@ public class DestinationDto {
     private String description;
     private String imageUrl;
     private double price;
-  //  private List<String> commentIds;
+    private List<String> commentIds;
+    private String ratingId;
 
     public static DestinationDto from(Destination destination) {
         return DestinationDto.builder()
@@ -34,7 +35,8 @@ public class DestinationDto {
                 .description(destination.getDescription())
                 .imageUrl(destination.getImageUrl())
                 .price(destination.getPrice())
-             //   .commentIds(destination.getComments().stream().map(Comment::getId).collect(Collectors.toList()))
+                .commentIds(destination.getComments().stream().map(Comment::getId).collect(Collectors.toList()))
+                .ratingId(destination.getRating().getId())
                 .build();
     }
 

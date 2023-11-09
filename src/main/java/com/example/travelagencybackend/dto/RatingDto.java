@@ -18,6 +18,7 @@ public class RatingDto {
 
     private String id;
     private int value;
+    private String userId;
     private String destinationId;
 
 
@@ -26,6 +27,7 @@ public class RatingDto {
         return RatingDto.builder()
                 .value(rating.getValue())
                 .destinationId(rating.getDestination().getId())
+                .userId(rating.getUser().getId())
                 .build();
     }
 

@@ -12,5 +12,5 @@ import lombok.NoArgsConstructor;
 public class NewRatingDto {
 
     private int value;
-    private String DestinationId;
+
 }
