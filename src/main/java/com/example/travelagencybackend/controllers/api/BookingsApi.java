@@ -75,9 +75,9 @@ public interface BookingsApi {
     @PreAuthorize("isAuthenticated()")
     @PutMapping(value = "/{id}")
     ResponseEntity<BookingDto> updateBooking (@PathVariable("id") String bookingId,
-                              @RequestBody NewBookingDto newBooking,
-                              @Parameter(hidden = true)
-                              @AuthenticationPrincipal AuthenticatedUser currentUser);
+                                              @RequestBody NewBookingDto newBooking,
+                                              @Parameter(hidden = true)
+                                              @AuthenticationPrincipal AuthenticatedUser currentUser);
 
     @Operation(summary = "Delete Booking by id", description = "available only to authenticated user")
     @ApiResponses(value = {
@@ -88,9 +88,11 @@ public interface BookingsApi {
                     }
             )
     })
-
+    @PreAuthorize("isAuthenticated()")
     @DeleteMapping("/{id}")
-    ResponseEntity<BookingDto> deleteBooking(@PathVariable("id") String bookingId);
+    ResponseEntity<BookingDto> deleteBooking(@Parameter(hidden = true)
+                                             @AuthenticationPrincipal AuthenticatedUser currentUser,
+                                             @PathVariable("id") String bookingId);
 
 
 }

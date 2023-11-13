@@ -1,9 +1,6 @@
 package com.example.travelagencybackend.models;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -19,11 +16,17 @@ public class Booking {
 
     @Id
     private String id;
+    @EqualsAndHashCode.Exclude
     private LocalDate createdDate;
+    @EqualsAndHashCode.Exclude
     private User user;
+    @EqualsAndHashCode.Exclude
     private List<Destination> destinations;
+    @EqualsAndHashCode.Exclude
     private double totalPrice;
+    @EqualsAndHashCode.Exclude
     private LocalDate startDate;
+    @EqualsAndHashCode.Exclude
     private LocalDate endDate;
 
 }

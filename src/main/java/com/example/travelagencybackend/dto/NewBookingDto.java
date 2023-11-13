@@ -15,9 +15,7 @@ import java.util.List;
 public class NewBookingDto {
 
     private LocalDate createdDate;
-    private String userId;
     private List<String> destinationIds;
-    private double totalPrice;
     private LocalDate startDate;
     private LocalDate endDate;
 }
