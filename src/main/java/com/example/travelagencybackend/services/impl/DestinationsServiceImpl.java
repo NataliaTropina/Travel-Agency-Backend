@@ -3,12 +3,15 @@ package com.example.travelagencybackend.services.impl;
 import com.example.travelagencybackend.dto.DestinationDto;
 import com.example.travelagencybackend.dto.DestinationsPage;
 import com.example.travelagencybackend.dto.NewDestinationDto;
+import com.example.travelagencybackend.models.Comment;
 import com.example.travelagencybackend.models.Destination;
+import com.example.travelagencybackend.models.Rating;
 import com.example.travelagencybackend.repositories.DestinationsRepository;
 import com.example.travelagencybackend.services.DestinationsService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -19,11 +22,18 @@ public class DestinationsServiceImpl implements DestinationsService {
 
     @Override
     public DestinationDto createDestination(NewDestinationDto newDestination) {
+
+        List<Comment> comments = new ArrayList<>();
+
+        Rating rating = new Rating();
+
         Destination destination = Destination.builder()
                 .city(newDestination.getCity())
                 .description(newDestination.getDescription())
                 .imageUrl(newDestination.getImageUrl())
                 .price(newDestination.getPrice())
+                .comments(comments)
+                .rating(rating)
                 .build();
         destinationsRepository.save(destination);
         return DestinationDto.from(destination);

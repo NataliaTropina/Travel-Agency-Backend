@@ -12,5 +12,5 @@ public interface BookingsService {
 
     BookingDto updateBooking(String bookingId, NewBookingDto newBooking, AuthenticatedUser currentUser);
 
-    BookingDto deleteBooking(String bookingId);
+    BookingDto deleteBooking(AuthenticatedUser currentUser, String bookingId);
 }
