@@ -30,9 +30,9 @@ public class CommentsServiceImpl implements CommentsService {
     @Override
    public CommentDto createComment(NewCommentDto newComment, AuthenticatedUser currentUser,String destinationId) {
 
-       User user = usersRepository.findById(currentUser.getUser().getId())
-               .orElseThrow(()->
-                      new NotFoundException("User with id <" + currentUser.getUser().getId() + "> not found"));
+       User user = usersRepository.findById(currentUser.getUser().getId()).get();
+            //   .orElseThrow(()->
+          //            new NotFoundException("User with id <" + currentUser.getUser().getId() + "> not found"));
        Destination destination = destinationsRepository.findById(destinationId)
                .orElseThrow(()->
                        new NotFoundException("Destination with id <" + destinationId + "> not found"));

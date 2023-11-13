@@ -9,4 +9,6 @@ public interface RatingsService {
     RatingDto createRating (AuthenticatedUser currentUser, NewRatingDto newRating, String DestinationId);
 
     RatingDto updateRating (NewRatingDto newRating, String ratingId, AuthenticatedUser currentUser);
+
+    RatingDto deleteRating (AuthenticatedUser currentUser, String id);
 }

@@ -25,4 +25,9 @@ public class RatingController implements RatingsApi {
     public ResponseEntity<RatingDto> updateRatingById(NewRatingDto newRating, String ratingId, AuthenticatedUser currentUser) {
         return ResponseEntity.ok(ratingsService.updateRating(newRating, ratingId, currentUser));
     }
+
+    @Override
+    public ResponseEntity<RatingDto> deleteRating(AuthenticatedUser currentUser, String id) {
+        return ResponseEntity.ok(ratingsService.deleteRating(currentUser, id));
+    }
 }

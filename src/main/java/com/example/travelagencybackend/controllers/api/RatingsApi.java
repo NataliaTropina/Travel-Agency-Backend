@@ -60,4 +60,21 @@ public interface RatingsApi {
                                                 @PathVariable("id") String ratingId,
                                                 @Parameter(hidden = true)
                                                 @AuthenticationPrincipal AuthenticatedUser currentUser);
+
+
+
+    @Operation(summary = "Delete Rating by id", description = "available only to authenticated user")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Delete Rating",
+                    content = {
+                            @Content(mediaType = "application/json",
+                                    schema = @Schema(implementation = BookingDto.class))
+                    }
+            )
+    })
+    @DeleteMapping("/{id}")
+    @PreAuthorize("isAuthenticated()")
+    ResponseEntity<RatingDto> deleteRating (@Parameter(hidden = true)
+                                            @AuthenticationPrincipal AuthenticatedUser currentUser,
+                                            @PathVariable("id") String id);
 }

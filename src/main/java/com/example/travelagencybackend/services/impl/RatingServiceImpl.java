@@ -73,22 +73,27 @@ public class RatingServiceImpl implements RatingsService {
                 .orElseThrow(() ->
                         new NotFoundException("User with id <" + currentUser.getUser().getId() + "> not found"));
 
+        Rating rating = ratingsRepository.findAllByUserAndId(user, ratingId);
+
+            rating.setValue(newRating.getValue());
+
+            ratingsRepository.save(rating);
 
 
-        List<Rating> ratingsByUser = ratingsRepository.findAllByUser(user);
+        return RatingDto.from(rating);
+    }
 
+    @Override
+    public RatingDto deleteRating(AuthenticatedUser currentUser, String id) {
 
-        for (Rating rating : ratingsByUser) {
-            if (rating.getId().equals(ratingId)) {
+        User user = usersRepository.findById(currentUser.getUser().getId())
+                .orElseThrow(() ->
+                        new NotFoundException("User with id <" + currentUser.getUser().getId() + "> not found"));
 
-               rating.setValue(newRating.getValue());
-               ratingsRepository.save(rating);
+        Rating rating = ratingsRepository.findAllByUserAndId(user, id);
 
-                return RatingDto.from(rating);
-            } else {
-                throw new NotFoundException("Rating is not available");
-            }
-        }
-        return null;
+        ratingsRepository.delete(rating);
+
+        return RatingDto.from(rating);
     }
 }

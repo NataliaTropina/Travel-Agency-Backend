@@ -33,7 +33,7 @@ public class BookingsController implements BookingsApi {
     }
 
     @Override
-    public ResponseEntity<BookingDto> deleteBooking(String bookingId) {
-        return ResponseEntity.ok(bookingsService.deleteBooking(bookingId));
+    public ResponseEntity<BookingDto> deleteBooking(AuthenticatedUser currentUser, String bookingId) {
+        return ResponseEntity.ok(bookingsService.deleteBooking(currentUser, bookingId));
     }
 }

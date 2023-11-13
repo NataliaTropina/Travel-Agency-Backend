@@ -31,21 +31,20 @@ public class BookingsServiceImpl implements BookingsService {
     private final DestinationsRepository destinationsRepository;
 
 
-
     @Override
     public BookingDto createBooking(NewBookingDto newBooking, AuthenticatedUser currentUser) {
 
         User user = usersRepository.findById(currentUser.getUser().getId())
-                .orElseThrow(()->
+                .orElseThrow(() ->
                         new NotFoundException("User with id <" + currentUser.getUser().getId() + "> not found"));
 
         List<Destination> destinationList = (List<Destination>) destinationsRepository.findAllById(newBooking.getDestinationIds());
 
         Booking booking = null;
         double totalBookingPrice = 0.0;
-        if(!destinationList.isEmpty()) {
+        if (!destinationList.isEmpty()) {
 
-            for (Destination destination : destinationList){
+            for (Destination destination : destinationList) {
                 totalBookingPrice += destination.getPrice();
             }
 
@@ -69,10 +68,10 @@ public class BookingsServiceImpl implements BookingsService {
     public BookingsPage getMyBookings(AuthenticatedUser currentUser) {
 
         User user = usersRepository.findById(currentUser.getUser().getId())
-                .orElseThrow(()->
+                .orElseThrow(() ->
                         new NotFoundException("User with id <" + currentUser.getUser().getId() + "> not found"));
 
-    List<Booking> bookingsByUser = bookingsRepository.findAllByUser(user);
+        List<Booking> bookingsByUser = bookingsRepository.findAllByUser(user);
 
         return BookingsPage.builder()
                 .data(from(bookingsByUser))
@@ -86,40 +85,37 @@ public class BookingsServiceImpl implements BookingsService {
                 .orElseThrow(() ->
                         new NotFoundException("User with id <" + currentUser.getUser().getId() + "> not found"));
 
-        List<Booking> bookingsByUser = bookingsRepository.findAllByUser(user);
+        Booking booking = bookingsRepository.findAllByUserAndId(user, bookingId);
 
-        Booking bookingToUpdate = null;
+        List<Destination> destinationList = (List<Destination>) destinationsRepository.findAllById(newBooking.getDestinationIds());
 
-        for (Booking booking : bookingsByUser) {
-            if (booking.getId().equals(bookingId)) {
+        double totalBookingPrice = 0.0;
+        if (!destinationList.isEmpty()) {
 
-                booking.setCreatedDate(newBooking.getCreatedDate());
-                booking.setEndDate(newBooking.getEndDate());
-
-                List<Destination> destinationList = (List<Destination>) destinationsRepository.findAllById(newBooking.getDestinationIds());
-
-                booking.setDestinations(destinationList);
-
-                bookingsRepository.save(booking);
-
-                bookingToUpdate = booking;
+            for (Destination destination : destinationList) {
+                totalBookingPrice += destination.getPrice();
             }
-        }
-        if (bookingToUpdate != null) {
-            return from(bookingToUpdate);
 
-        }else {
-            throw new NotFoundException("Booking is not available");
+            booking.setDestinations(destinationList);
+            booking.setCreatedDate(newBooking.getCreatedDate());
+            booking.setEndDate(newBooking.getEndDate());
+            booking.setTotalPrice(totalBookingPrice);
+
+            bookingsRepository.save(booking);
+
         }
+        return from(booking);
     }
 
     @Override
-    public BookingDto deleteBooking(String bookingId) {
+    public BookingDto deleteBooking(AuthenticatedUser currentUser, String bookingId) {
 
-        Booking booking = bookingsRepository.findById(bookingId)
-                .orElseThrow(()->
-                        new NotFoundException("Booking with id <" + bookingId + "> not found")
-                );
+        User user = usersRepository.findById(currentUser.getUser().getId())
+                .orElseThrow(() ->
+                        new NotFoundException("User with id <" + currentUser.getUser().getId() + "> not found"));
+
+
+        Booking booking = bookingsRepository.findAllByUserAndId(user, bookingId);
 
         bookingsRepository.deleteById(bookingId);
 
