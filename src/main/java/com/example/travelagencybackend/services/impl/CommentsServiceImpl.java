@@ -1,6 +1,7 @@
 package com.example.travelagencybackend.services.impl;
 
 import com.example.travelagencybackend.dto.*;
+import com.example.travelagencybackend.exceptions.NotFoundException;
 import com.example.travelagencybackend.models.Comment;
 import com.example.travelagencybackend.models.Destination;
 import com.example.travelagencybackend.models.User;
@@ -15,7 +16,6 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDate;
 import java.util.List;
 
-
 @RequiredArgsConstructor
 @Service
 public class CommentsServiceImpl implements CommentsService {
@@ -27,31 +27,29 @@ public class CommentsServiceImpl implements CommentsService {
     private final DestinationsRepository destinationsRepository;
 
     @Override
-   public CommentDto createComment(NewCommentDto newComment, AuthenticatedUser currentUser,String destinationId) {
+    public CommentDto createComment(NewCommentDto newComment, AuthenticatedUser currentUser, String destinationId) {
 
-       User user = usersRepository.findById(currentUser.getUser().getId()).get();
-            //   .orElseThrow(()->
-              //         new NotFoundException("User with id <" + currentUser.getUser().getId() + "> not found"));
-       Destination destination = destinationsRepository.findById(destinationId).get();
+        User user = usersRepository.findById(currentUser.getUser().getId()).orElseThrow(() ->
+                new NotFoundException("User with id <" + currentUser.getUser().getId() + "> not found"));
+        Destination destination = destinationsRepository.findById(newComment.getDestinationId()).get();
 
-           Comment comment = Comment.builder()
-                   .createdDate(LocalDate.now())
-                   .description(newComment.getDescription())
-                   .user(user)
-                   .destination(destination)
-                   .build();
+        Comment comment = Comment.builder()
+                .createdDate(LocalDate.now())
+                .description(newComment.getDescription())
+                .user(user)
+                .destination(destination)
+                .build();
 
-           commentsRepository.save(comment);
+        commentsRepository.save(comment);
 
-           return CommentDto.from(comment);
+        return CommentDto.from(comment);
     }
 
     @Override
     public CommentsPage getMyComments(AuthenticatedUser currentUser) {
 
-        User user = usersRepository.findById(currentUser.getUser().getId()).get();
-           //     .orElseThrow(()->
-            //            new NotFoundException("User with id <" + currentUser.getUser().getId() + "> not found"));
+        User user = usersRepository.findById(currentUser.getUser().getId()).orElseThrow(() ->
+                new NotFoundException("User with id <" + currentUser.getUser().getId() + "> not found"));
 
         List<Comment> commentsByUser = commentsRepository.findAllByUser(user);
 
@@ -63,9 +61,8 @@ public class CommentsServiceImpl implements CommentsService {
     @Override
     public CommentDto updateComment(String commentId, NewCommentDto newComment, AuthenticatedUser currentUser, String destinationId) {
 
-        User user = usersRepository.findById(currentUser.getUser().getId()).get();
-           //     .orElseThrow(() ->
-            //            new NotFoundException("User with id <" + currentUser.getUser().getId() + "> not found"));
+        User user = usersRepository.findById(currentUser.getUser().getId()).orElseThrow(() ->
+                new NotFoundException("User with id <" + currentUser.getUser().getId() + "> not found"));
         Destination destination = destinationsRepository.findById(destinationId).get();
 
         List<Comment> commentsByUser = commentsRepository.findAllByUser(user);
@@ -86,20 +83,17 @@ public class CommentsServiceImpl implements CommentsService {
         if (commentToUpdate != null) {
             return CommentDto.from(commentToUpdate);
 
-        }else {
-       //     throw new NotFoundException("No comment found");
+        } else {
+            //    throw new NotFoundException("No comment found");
             return null;
         }
     }
 
-
     @Override
     public CommentDto deleteComment(String commentId) {
 
-        Comment comment = commentsRepository.findById(commentId).get();
-            //    .orElseThrow(()->
-              //          new ChangeSetPersister.NotFoundException("Comment with id <" + commentId + "> not found")
-               // );
+        Comment comment = commentsRepository.findById(commentId).orElseThrow(() ->
+                new NotFoundException("Comment with id <" + commentId + "> not found"));
 
         commentsRepository.deleteById(commentId);
 

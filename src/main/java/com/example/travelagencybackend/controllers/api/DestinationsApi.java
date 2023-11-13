@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api/destinations")
 public interface DestinationsApi {
 
-    @Operation(summary = "Create a new destination")
+    @Operation(summary = "Create a new destination", description = "Available only to authenticated user")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "201", description = "Create a new destination",
                     content = {
@@ -34,6 +34,8 @@ public interface DestinationsApi {
                             @Content(mediaType = "application/json", schema = @Schema(implementation = ValidationErrorsDto.class))
                     })
     })
+
+    @PreAuthorize("isAuthenticated()")
     @PostMapping
     ResponseEntity<DestinationDto> createDestination(@RequestBody NewDestinationDto newDestination);
 
@@ -65,7 +67,7 @@ public interface DestinationsApi {
 
     @Operation(summary = "Get a destinations by city ", description = "Available to everyone")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Destination finded",
+            @ApiResponse(responseCode = "200", description = "Destination founded!!!",
                     content = {
                             @Content(mediaType = "application/json",
                                     schema = @Schema(implementation = DestinationDto.class))
@@ -79,7 +81,6 @@ public interface DestinationsApi {
             )
     })
 
-    @GetMapping(value = "/search/{str}")
-    DestinationsPage findByCity(@PathVariable String str);
-
+    @GetMapping(value = "/search/{city}")
+    DestinationsPage findByCity(@PathVariable("city") String str);
 }

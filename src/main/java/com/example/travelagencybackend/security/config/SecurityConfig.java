@@ -20,7 +20,6 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
-
 import javax.servlet.http.HttpServletResponse;
 
 @RequiredArgsConstructor
@@ -42,6 +41,7 @@ public class SecurityConfig {
                 .antMatchers("/swagger-ui/**").permitAll()
                 .antMatchers(HttpMethod.POST, "/api/register/**").permitAll()
                 .antMatchers(HttpMethod.GET, "/api/destinations/**").permitAll()
+                .antMatchers(HttpMethod.GET, "/api/comments/**").permitAll()
                 .antMatchers("/api/**").authenticated()
                 .and()
                 .formLogin()
@@ -97,6 +97,4 @@ public class SecurityConfig {
             AuthenticationManagerBuilder authenticationManager) throws Exception {
         authenticationManager.userDetailsService(userDetailsServiceImpl).passwordEncoder(passwordEncoder);
     }
-
 }
-

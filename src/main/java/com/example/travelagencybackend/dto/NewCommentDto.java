@@ -1,6 +1,5 @@
 package com.example.travelagencybackend.dto;
 
-import com.example.travelagencybackend.models.Destination;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -20,5 +19,4 @@ public class NewCommentDto {
     private String description;
     private String userId;
     private String destinationId;
-
 }

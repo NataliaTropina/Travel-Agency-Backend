@@ -23,15 +23,15 @@ import javax.validation.Valid;
 @RequestMapping("/api/register")
 public interface SignUpApi {
 
-    @Operation(summary = "Регистрация пользователя")
+    @Operation(summary = "User registration")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "201", description = "Зарегистрированный пользователь",
+            @ApiResponse(responseCode = "201", description = "Registered user!!!",
                     content = {
                             @Content(mediaType = "application/json",
                                     schema = @Schema(implementation = UserDto.class))
                     }
             ),
-            @ApiResponse(responseCode = "400", description = "Ошибка валидации",
+            @ApiResponse(responseCode = "400", description = "Validation Error!!!",
                     content = {
                             @Content(mediaType = "application/json", schema = @Schema(implementation = ValidationErrorsDto.class))
                     })
@@ -40,4 +40,3 @@ public interface SignUpApi {
     @PostMapping
     ResponseEntity<UserDto> signUp(@RequestBody @Valid NewUserDto newUser);
 }
-

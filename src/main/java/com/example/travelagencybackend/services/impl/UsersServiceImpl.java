@@ -25,6 +25,4 @@ public class UsersServiceImpl implements UsersService {
                 .role(user.getRole().name())
                 .build();
     }
-
-
 }

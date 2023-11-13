@@ -11,5 +11,4 @@ public interface DestinationsService {
     DestinationsPage findAll();
 
     DestinationsPage findByCity(String str);
-
 }

@@ -6,7 +6,6 @@ import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import org.springframework.boot.CommandLineRunner;
-import org.springframework.stereotype.Component;
 
 @RequiredArgsConstructor
 //@Component
@@ -35,6 +34,5 @@ public class InitialDataRunner implements CommandLineRunner {
             usersRepository.save(admin);
             usersRepository.save(alisher);
         }
-
     }
 }

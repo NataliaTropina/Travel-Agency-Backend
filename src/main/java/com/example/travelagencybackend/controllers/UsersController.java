@@ -23,6 +23,4 @@ public class UsersController implements UsersApi {
 
         return ResponseEntity.ok(profile);
     }
-
-
 }

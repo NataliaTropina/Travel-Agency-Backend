@@ -22,7 +22,7 @@ public class DestinationsController implements DestinationsApi {
         return ResponseEntity.status(201).body(destinationsService.createDestination(newDestination));
     }
 
-   @Override
+    @Override
     public DestinationsPage findAll() {
         return destinationsService.findAll();
     }
@@ -31,5 +31,4 @@ public class DestinationsController implements DestinationsApi {
     public DestinationsPage findByCity(@PathVariable String str) {
         return destinationsService.findByCity(str);
     }
-
 }

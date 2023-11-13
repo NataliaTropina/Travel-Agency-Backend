@@ -22,6 +22,4 @@ public class Comment {
     private String description;
     private User user;
     private Destination destination;
-
-
 }

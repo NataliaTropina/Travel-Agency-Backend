@@ -1,6 +1,5 @@
 package com.example.travelagencybackend.controllers.api;
 
-
 import com.example.travelagencybackend.dto.ProfileDto;
 import com.example.travelagencybackend.security.details.AuthenticatedUser;
 import io.swagger.v3.oas.annotations.Operation;
@@ -23,21 +22,21 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/api/users")
 public interface UsersApi {
 
-    @Operation(summary = "Получение своего профиля", description = "Доступно только аутентифицированному пользователю")
+    @Operation(summary = "Getting your profile data", description = "Available only to authenticated user")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Информацию о профиле",
+            @ApiResponse(responseCode = "200", description = "Profile information!!!",
                     content = {
                             @Content(mediaType = "application/json",
                                     schema = @Schema(implementation = ProfileDto.class))
                     }
             ),
-            @ApiResponse(responseCode = "401", description = "Пользователь не авторизован",
+            @ApiResponse(responseCode = "401", description = "The user is not authorized!!!",
                     content = {
                             @Content(mediaType = "application/json",
                                     schema = @Schema(ref = "StandardResponseDto"))
                     }
             ),
-            @ApiResponse(responseCode = "403", description = "Запрещено",
+            @ApiResponse(responseCode = "403", description = "Access denied!!!",
                     content = {
                             @Content(mediaType = "application/json",
                                     schema = @Schema(ref = "StandardResponseDto"))
@@ -48,5 +47,4 @@ public interface UsersApi {
     @GetMapping("/my/profile")
     ResponseEntity<ProfileDto> getProfile(@Parameter(hidden = true)
                                           @AuthenticationPrincipal AuthenticatedUser currentUser);
-
 }

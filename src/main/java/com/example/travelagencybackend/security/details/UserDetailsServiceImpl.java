@@ -25,4 +25,3 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         return new AuthenticatedUser(user);
     }
 }
-

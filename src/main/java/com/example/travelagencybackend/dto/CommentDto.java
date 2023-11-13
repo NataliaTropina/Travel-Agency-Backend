@@ -39,5 +39,4 @@ public class CommentDto {
                 .map(CommentDto::from)
                 .collect(Collectors.toList());
     }
-
 }

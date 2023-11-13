@@ -8,7 +8,6 @@ import com.example.travelagencybackend.security.details.AuthenticatedUser;
 import com.example.travelagencybackend.services.CommentsService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -23,7 +22,7 @@ public class CommentsController implements CommentsApi {
     }
 
     @Override
-    public CommentsPage getMyComments(String userId,AuthenticatedUser currentUser) {
+    public CommentsPage getMyComments(String userId, AuthenticatedUser currentUser) {
         return commentsService.getMyComments(currentUser);
     }
 

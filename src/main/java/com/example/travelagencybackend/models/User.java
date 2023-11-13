@@ -18,7 +18,7 @@ import java.util.List;
 public class User {
 
     public enum Role {
-        USER, ADMIN, GUEST
+        USER, ADMIN
     }
 
     @Id
@@ -31,7 +31,4 @@ public class User {
     private List<Booking> bookings;
     private Role role;
     private String hashPassword;
-
-
 }
-

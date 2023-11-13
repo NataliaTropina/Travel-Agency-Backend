@@ -28,7 +28,7 @@ public class OpenApiDocumentation {
                 new Operation()
                         .addTagsItem("Authentication")
                         .responses(new ApiResponses()
-                                .addApiResponse("200", new ApiResponse().description("Успешный выход"))));
+                                .addApiResponse("200", new ApiResponse().description("Successful exit!!!"))));
     }
     private static PathItem buildAuthenticationPathItem() {
         return new PathItem().post(
@@ -38,7 +38,7 @@ public class OpenApiDocumentation {
                         .responses(new ApiResponses()
                                 .addApiResponse("200",
                                         new ApiResponse()
-                                                .description("Успешная аутентификация")
+                                                .description("Successful authentication!!!")
                                                 .content(new Content().addMediaType("application/json",
                                                         new MediaType().schema(new Schema<>().$ref("StandardResponseDto"))))
                                                 .headers(
@@ -46,10 +46,10 @@ public class OpenApiDocumentation {
                                                                 .singletonMap("Set-Cookie",
                                                                         new Header()
                                                                                 .example("JSESSIONID=1234")
-                                                                                .description("Идентификатор сессии"))))
+                                                                                .description("Session ID"))))
                                 .addApiResponse("401",
                                         new ApiResponse()
-                                                .description("Неверный логин или пароль")
+                                                .description("Wrong login or password!!!")
                                                 .content(new Content()
                                                         .addMediaType("application/json",
                                                                 new MediaType()
@@ -72,7 +72,7 @@ public class OpenApiDocumentation {
     static Schema<?> emailAndPassword() {
         return new Schema<>()
                 .type("object")
-                .description("Email и пароль пользователя")
+                .description("Email and password of user")
                 .addProperty("username", new Schema<>().type("string"))
                 .addProperty("password", new Schema<>().type("string"));
     }
