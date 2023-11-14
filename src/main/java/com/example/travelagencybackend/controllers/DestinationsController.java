@@ -6,7 +6,6 @@ import com.example.travelagencybackend.dto.DestinationsPage;
 import com.example.travelagencybackend.dto.NewDestinationDto;
 import com.example.travelagencybackend.services.DestinationsService;
 import lombok.RequiredArgsConstructor;
-
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
@@ -29,6 +28,7 @@ public class DestinationsController implements DestinationsApi {
 
     @Override
     public DestinationsPage findByCity(@PathVariable String str) {
+
         return destinationsService.findByCity(str);
     }
 }

@@ -49,8 +49,7 @@ public class CommentsServiceImpl implements CommentsService {
     public CommentsPage getMyComments(AuthenticatedUser currentUser) {
 
         User user = usersRepository.findById(currentUser.getUser().getId()).orElseThrow(() ->
-                new NotFoundException("User with id <" + currentUser.getUser().getId() + "> not found"));
-
+                        new NotFoundException("User with id <" + currentUser.getUser().getId() + "> not found"));
         List<Comment> commentsByUser = commentsRepository.findAllByUser(user);
 
         return CommentsPage.builder()
@@ -63,7 +62,7 @@ public class CommentsServiceImpl implements CommentsService {
 
         User user = usersRepository.findById(currentUser.getUser().getId()).orElseThrow(() ->
                 new NotFoundException("User with id <" + currentUser.getUser().getId() + "> not found"));
-        Destination destination = destinationsRepository.findById(destinationId).get();
+       // Destination destination = destinationsRepository.findById(destinationId).get();
 
         List<Comment> commentsByUser = commentsRepository.findAllByUser(user);
 

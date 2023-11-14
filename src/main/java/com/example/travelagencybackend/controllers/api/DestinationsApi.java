@@ -81,6 +81,6 @@ public interface DestinationsApi {
             )
     })
 
-    @GetMapping(value = "/search/{city}")
-    DestinationsPage findByCity(@PathVariable("city") String str);
+    @GetMapping(value = "/search/{str}")
+    DestinationsPage findByCity(@PathVariable String str);
 }

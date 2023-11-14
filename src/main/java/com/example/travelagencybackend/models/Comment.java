@@ -2,6 +2,7 @@ package com.example.travelagencybackend.models;
 
 import lombok.*;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.LocalDate;
@@ -15,12 +16,12 @@ public class Comment {
 
     @Id
     private String id;
-    @EqualsAndHashCode.Exclude
+
     private LocalDate createdDate;
-    @EqualsAndHashCode.Exclude
+
     private String description;
-    @EqualsAndHashCode.Exclude
+
     private User user;
-    @EqualsAndHashCode.Exclude
+    @DBRef
     private Destination destination;
 }
