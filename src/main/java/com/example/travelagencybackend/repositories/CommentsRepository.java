@@ -1,5 +1,6 @@
 package com.example.travelagencybackend.repositories;
 
+import com.example.travelagencybackend.models.Booking;
 import com.example.travelagencybackend.models.Comment;
 import com.example.travelagencybackend.models.User;
 import org.springframework.data.mongodb.repository.MongoRepository;
@@ -12,4 +13,6 @@ public interface CommentsRepository extends MongoRepository<Comment, String> {
     List<Comment> findAll();
 
     List<Comment> findAllByUser(User user);
+
+    Comment findAllByUserAndId(User user, String ratingId);
 }

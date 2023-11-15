@@ -66,33 +66,20 @@ public class CommentsServiceImpl implements CommentsService {
     }
 
     @Override
-    public CommentDto updateComment(String commentId, NewCommentDto newComment, AuthenticatedUser currentUser, String destinationId) {
+    public CommentDto updateComment(String commentId, NewCommentDto newComment, AuthenticatedUser currentUser) {
 
         User user = usersRepository.findById(currentUser.getUser().getId())
                 .orElseThrow(() ->
                         new NotFoundException("User with id <" + currentUser.getUser().getId() + "> not found"));
 
-        List<Comment> commentsByUser = commentsRepository.findAllByUser(user);
+        Comment comment = commentsRepository.findAllByUserAndId(user, commentId);
 
-        Comment commentToUpdate = null;
+        comment.setDescription(newComment.getDescription());
 
-        for (Comment comment : commentsByUser) {
-            if (comment.getId().equals(commentId)) {
+        commentsRepository.save(comment);
 
-                comment.setCreatedDate(newComment.getCreatedDate());
-                comment.setDescription(newComment.getDescription());
+        return CommentDto.from(comment);
 
-                commentsRepository.save(comment);
-
-                commentToUpdate = comment;
-            }
-        }
-        if (commentToUpdate != null) {
-            return CommentDto.from(commentToUpdate);
-
-        } else {
-            throw new NotFoundException("No comment found");
-        }
     }
 
 

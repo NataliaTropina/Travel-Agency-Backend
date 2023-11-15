@@ -13,7 +13,7 @@ public interface CommentsService {
 
     CommentsPage findAll();
 
-    CommentDto updateComment(String commentId, NewCommentDto newComment, AuthenticatedUser currentUserString, String destinationId);
+    CommentDto updateComment(String commentId, NewCommentDto newComment, AuthenticatedUser currentUserString);
 
     CommentDto deleteComment(String commentId);
 }

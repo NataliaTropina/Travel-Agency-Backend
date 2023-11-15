@@ -10,6 +10,6 @@ public interface DestinationsService {
 
     DestinationsPage findAll();
 
-    DestinationsPage findByCity(String str);
+    DestinationsPage findByCity(String city);
 
 }

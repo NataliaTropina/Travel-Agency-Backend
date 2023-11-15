@@ -27,7 +27,7 @@ public class DestinationsController implements DestinationsApi {
     }
 
     @Override
-    public DestinationsPage findByCity(@PathVariable String str) {
-        return destinationsService.findByCity(str);
+    public DestinationsPage findByCity(String city) {
+        return destinationsService.findByCity(city);
     }
 }

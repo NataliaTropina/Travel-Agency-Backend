@@ -73,8 +73,7 @@ public interface CommentsApi {
     ResponseEntity<CommentDto> updateComment(@PathVariable("id") String bookingId,
                                              @RequestBody NewCommentDto newComment,
                                              @Parameter(hidden = true)
-                                             @AuthenticationPrincipal AuthenticatedUser currentUser,
-                                             @PathVariable String destinationId);
+                                             @AuthenticationPrincipal AuthenticatedUser currentUser);
 
     @Operation(summary = "Delete Comment by id", description = "available only to authenticated user")
     @ApiResponses(value = {

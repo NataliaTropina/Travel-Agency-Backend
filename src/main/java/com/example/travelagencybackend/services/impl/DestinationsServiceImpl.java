@@ -60,9 +60,9 @@ public class DestinationsServiceImpl implements DestinationsService {
     }
 
     @Override
-    public DestinationsPage findByCity(String str) {
+    public DestinationsPage findByCity(String city) {
 
-        List<Destination> destinations = destinationsRepository.findByCity(str);
+        List<Destination> destinations = destinationsRepository.findByCity(city);
         return DestinationsPage
                 .builder()
                 .data(DestinationDto.from(destinations))

@@ -27,8 +27,8 @@ public class CommentsController implements CommentsApi {
     }
 
     @Override
-    public ResponseEntity<CommentDto> updateComment(String commentId, NewCommentDto newComment, AuthenticatedUser currentUser, String destinationId) {
-        return ResponseEntity.ok(commentsService.updateComment(commentId, newComment, currentUser, destinationId));
+    public ResponseEntity<CommentDto> updateComment(String commentId, NewCommentDto newComment, AuthenticatedUser currentUser) {
+        return ResponseEntity.ok(commentsService.updateComment(commentId, newComment, currentUser));
     }
 
     @Override

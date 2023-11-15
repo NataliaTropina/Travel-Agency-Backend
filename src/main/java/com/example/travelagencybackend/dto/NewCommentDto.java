@@ -16,5 +16,4 @@ public class NewCommentDto {
 
     private LocalDate createdDate;
     private String description;
-    private String userId;
 }
