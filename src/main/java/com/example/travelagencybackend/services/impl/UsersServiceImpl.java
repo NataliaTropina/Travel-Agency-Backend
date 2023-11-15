@@ -13,7 +13,6 @@ public class UsersServiceImpl implements UsersService {
 
     private final UsersRepository usersRepository;
 
-
     @Override
     public ProfileDto getProfile(String currentUserId) {
         User user = usersRepository.findById(currentUserId)
@@ -25,6 +24,4 @@ public class UsersServiceImpl implements UsersService {
                 .role(user.getRole().name())
                 .build();
     }
-
-
 }

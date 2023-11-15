@@ -14,10 +14,8 @@ import com.example.travelagencybackend.security.details.AuthenticatedUser;
 import com.example.travelagencybackend.services.BookingsService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-
 import java.time.LocalDate;
 import java.util.List;
-
 import static com.example.travelagencybackend.dto.BookingDto.from;
 
 @Service
@@ -121,5 +119,4 @@ public class BookingsServiceImpl implements BookingsService {
 
         return from(booking);
     }
-
 }

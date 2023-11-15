@@ -2,12 +2,10 @@ package com.example.travelagencybackend.dto;
 
 import com.example.travelagencybackend.models.Booking;
 import com.example.travelagencybackend.models.Destination;
-import com.example.travelagencybackend.models.User;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
 import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -26,8 +24,7 @@ public class BookingDto {
     private LocalDate startDate;
     private LocalDate endDate;
 
-
-    public static BookingDto from (Booking booking){
+    public static BookingDto from(Booking booking) {
         return BookingDto.builder()
                 .id(booking.getId())
                 .createdDate(booking.getCreatedDate())
@@ -39,7 +36,7 @@ public class BookingDto {
                 .build();
     }
 
-    public static List<BookingDto> from (List<Booking> bookings){
+    public static List<BookingDto> from(List<Booking> bookings) {
 
         return bookings.stream().map(BookingDto::from).collect(Collectors.toList());
     }

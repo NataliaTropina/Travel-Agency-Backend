@@ -39,9 +39,9 @@ public interface RatingsApi {
     })
     @PreAuthorize("isAuthenticated()")
     @PostMapping
-    ResponseEntity<RatingDto> createRating (@Parameter(hidden = true)
-                                            @AuthenticationPrincipal AuthenticatedUser currentUser,
-                                            @RequestBody NewRatingDto newRatingDto, String destinationId);
+    ResponseEntity<RatingDto> createRating(@Parameter(hidden = true)
+                                           @AuthenticationPrincipal AuthenticatedUser currentUser,
+                                           @RequestBody NewRatingDto newRatingDto, String destinationId);
 
 
     @Operation(summary = "Update Rating by id", description = "available only to authenticated user")
@@ -56,11 +56,10 @@ public interface RatingsApi {
 
     @PreAuthorize("isAuthenticated()")
     @PutMapping(value = "/{id}")
-    ResponseEntity<RatingDto> updateRatingById (@RequestBody NewRatingDto newRating,
-                                                @PathVariable("id") String ratingId,
-                                                @Parameter(hidden = true)
-                                                @AuthenticationPrincipal AuthenticatedUser currentUser);
-
+    ResponseEntity<RatingDto> updateRatingById(@RequestBody NewRatingDto newRating,
+                                               @PathVariable("id") String ratingId,
+                                               @Parameter(hidden = true)
+                                               @AuthenticationPrincipal AuthenticatedUser currentUser);
 
 
     @Operation(summary = "Delete Rating by id", description = "available only to authenticated user")
@@ -74,7 +73,7 @@ public interface RatingsApi {
     })
     @DeleteMapping("/{id}")
     @PreAuthorize("isAuthenticated()")
-    ResponseEntity<RatingDto> deleteRating (@Parameter(hidden = true)
-                                            @AuthenticationPrincipal AuthenticatedUser currentUser,
-                                            @PathVariable("id") String id);
+    ResponseEntity<RatingDto> deleteRating(@Parameter(hidden = true)
+                                           @AuthenticationPrincipal AuthenticatedUser currentUser,
+                                           @PathVariable("id") String id);
 }

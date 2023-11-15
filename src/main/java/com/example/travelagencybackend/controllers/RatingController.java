@@ -18,7 +18,7 @@ public class RatingController implements RatingsApi {
 
     @Override
     public ResponseEntity<RatingDto> createRating(AuthenticatedUser currentUser, NewRatingDto newRating, String destinationId) {
-        return ResponseEntity.status(201).body(ratingsService.createRating(currentUser,newRating, destinationId));
+        return ResponseEntity.status(201).body(ratingsService.createRating(currentUser, newRating, destinationId));
     }
 
     @Override

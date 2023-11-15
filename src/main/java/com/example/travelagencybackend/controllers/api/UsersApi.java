@@ -1,6 +1,5 @@
 package com.example.travelagencybackend.controllers.api;
 
-
 import com.example.travelagencybackend.dto.ProfileDto;
 import com.example.travelagencybackend.security.details.AuthenticatedUser;
 import io.swagger.v3.oas.annotations.Operation;
@@ -48,5 +47,4 @@ public interface UsersApi {
     @GetMapping("/my/profile")
     ResponseEntity<ProfileDto> getProfile(@Parameter(hidden = true)
                                           @AuthenticationPrincipal AuthenticatedUser currentUser);
-
 }

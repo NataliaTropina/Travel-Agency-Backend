@@ -15,4 +15,3 @@ public class RestException extends RuntimeException {
         return httpStatus;
     }
 }
-

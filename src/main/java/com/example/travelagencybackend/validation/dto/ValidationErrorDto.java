@@ -24,4 +24,3 @@ public class ValidationErrorDto {
     @Schema(description = "Какое значение было получено от клиента", example = "sidikov.marsel.com")
     private String rejectedValue;
 }
-

@@ -6,7 +6,6 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -20,6 +19,7 @@ public class UserDto {
     private String id;
     @Schema(description = "Users name", example = "username")
     private String email;
+
     public static UserDto from(User user) {
         return UserDto.builder()
                 .id(user.getId())
@@ -33,4 +33,3 @@ public class UserDto {
                 .collect(Collectors.toList());
     }
 }
-

@@ -9,15 +9,12 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@Document
+@Document(collection = "ratings")
 public class Rating {
 
     @Id
     private String id;
-
     private int value;
     @DBRef
     private Destination destination;
-
-    private User user;
 }

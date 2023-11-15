@@ -18,7 +18,7 @@ public class BookingsController implements BookingsApi {
 
 
     @Override
-    public ResponseEntity <BookingDto> createBooking(NewBookingDto newBooking, AuthenticatedUser currentUser) {
+    public ResponseEntity<BookingDto> createBooking(NewBookingDto newBooking, AuthenticatedUser currentUser) {
         return ResponseEntity.status(201).body(bookingsService.createBooking(newBooking, currentUser));
     }
 

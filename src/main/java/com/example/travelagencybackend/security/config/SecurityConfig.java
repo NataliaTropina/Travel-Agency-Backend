@@ -97,6 +97,4 @@ public class SecurityConfig {
             AuthenticationManagerBuilder authenticationManager) throws Exception {
         authenticationManager.userDetailsService(userDetailsServiceImpl).passwordEncoder(passwordEncoder);
     }
-
 }
-

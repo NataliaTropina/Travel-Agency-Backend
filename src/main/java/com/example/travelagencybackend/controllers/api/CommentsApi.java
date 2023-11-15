@@ -36,11 +36,11 @@ public interface CommentsApi {
                     })
     })
     @PreAuthorize("isAuthenticated()")
-    @PostMapping
+    @PostMapping(value = "/{id}")
     ResponseEntity<CommentDto> createComment(@RequestBody NewCommentDto newComment,
                                              @Parameter(hidden = true)
                                              @AuthenticationPrincipal AuthenticatedUser currentUser,
-                                             @PathVariable String destinationId);
+                                             @PathVariable("id") String destinationId);
 
     @Operation(summary = "Comments page by user", description = "available only to authenticated user")
     @ApiResponses(value = {
@@ -54,9 +54,9 @@ public interface CommentsApi {
 
     @PreAuthorize("isAuthenticated()")
     @GetMapping(value = "/searchBy/{userId}")
-    CommentsPage getMyComments (@PathVariable String userId,
-                                @Parameter(hidden = true)
-                                @AuthenticationPrincipal AuthenticatedUser currentUser);
+    CommentsPage getMyComments(@PathVariable String userId,
+                               @Parameter(hidden = true)
+                               @AuthenticationPrincipal AuthenticatedUser currentUser);
 
     @Operation(summary = "Update Comment by id", description = "available only to authenticated user")
     @ApiResponses(value = {
@@ -70,11 +70,11 @@ public interface CommentsApi {
 
     @PreAuthorize("isAuthenticated()")
     @PutMapping(value = "/{id}")
-    ResponseEntity<CommentDto> updateComment (@PathVariable("id") String bookingId,
-                                              @RequestBody NewCommentDto newComment,
-                                              @Parameter(hidden = true)
-                                              @AuthenticationPrincipal AuthenticatedUser currentUser,
-                                              @PathVariable String destinationId);
+    ResponseEntity<CommentDto> updateComment(@PathVariable("id") String bookingId,
+                                             @RequestBody NewCommentDto newComment,
+                                             @Parameter(hidden = true)
+                                             @AuthenticationPrincipal AuthenticatedUser currentUser,
+                                             @PathVariable String destinationId);
 
     @Operation(summary = "Delete Comment by id", description = "available only to authenticated user")
     @ApiResponses(value = {
@@ -114,6 +114,4 @@ public interface CommentsApi {
 
     @GetMapping
     CommentsPage findAll();
-
-
 }

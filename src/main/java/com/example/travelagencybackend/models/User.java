@@ -20,23 +20,12 @@ public class User {
 
     @Id
     private String id;
-    @EqualsAndHashCode.Exclude
     private String firstName;
-    @EqualsAndHashCode.Exclude
     private String lastName;
-    @EqualsAndHashCode.Exclude
     private LocalDate createdDate;
-    @EqualsAndHashCode.Exclude
     private String email;
-    @EqualsAndHashCode.Exclude
     private List<Comment> comments;
-    @EqualsAndHashCode.Exclude
     private List<Booking> bookings;
-    @EqualsAndHashCode.Exclude
     private Role role;
-    @EqualsAndHashCode.Exclude
     private String hashPassword;
-
-
 }
-

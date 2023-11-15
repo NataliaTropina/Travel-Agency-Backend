@@ -3,7 +3,6 @@ package com.example.travelagencybackend.controllers.api;
 import com.example.travelagencybackend.dto.BookingDto;
 import com.example.travelagencybackend.dto.BookingsPage;
 import com.example.travelagencybackend.dto.NewBookingDto;
-import com.example.travelagencybackend.dto.UserDto;
 import com.example.travelagencybackend.security.details.AuthenticatedUser;
 import com.example.travelagencybackend.validation.dto.ValidationErrorsDto;
 import io.swagger.v3.oas.annotations.Operation;
@@ -41,9 +40,9 @@ public interface BookingsApi {
     })
     @PreAuthorize("isAuthenticated()")
     @PostMapping
-    ResponseEntity<BookingDto> createBooking (@RequestBody NewBookingDto newBooking,
-                                              @Parameter(hidden = true)
-                                              @AuthenticationPrincipal AuthenticatedUser currentUser);
+    ResponseEntity<BookingDto> createBooking(@RequestBody NewBookingDto newBooking,
+                                             @Parameter(hidden = true)
+                                             @AuthenticationPrincipal AuthenticatedUser currentUser);
 
 
     @Operation(summary = "Bookings page by user", description = "available only to authenticated user")
@@ -58,8 +57,8 @@ public interface BookingsApi {
 
     @PreAuthorize("isAuthenticated()")
     @GetMapping(value = "/by-user")
-    BookingsPage getMyBookings (@Parameter(hidden = true)
-                                @AuthenticationPrincipal AuthenticatedUser currentUser);
+    BookingsPage getMyBookings(@Parameter(hidden = true)
+                               @AuthenticationPrincipal AuthenticatedUser currentUser);
 
 
     @Operation(summary = "Update Booking by id", description = "available only to authenticated user")
@@ -74,10 +73,10 @@ public interface BookingsApi {
 
     @PreAuthorize("isAuthenticated()")
     @PutMapping(value = "/{id}")
-    ResponseEntity<BookingDto> updateBooking (@PathVariable("id") String bookingId,
-                                              @RequestBody NewBookingDto newBooking,
-                                              @Parameter(hidden = true)
-                                              @AuthenticationPrincipal AuthenticatedUser currentUser);
+    ResponseEntity<BookingDto> updateBooking(@PathVariable("id") String bookingId,
+                                             @RequestBody NewBookingDto newBooking,
+                                             @Parameter(hidden = true)
+                                             @AuthenticationPrincipal AuthenticatedUser currentUser);
 
     @Operation(summary = "Delete Booking by id", description = "available only to authenticated user")
     @ApiResponses(value = {
@@ -93,6 +92,4 @@ public interface BookingsApi {
     ResponseEntity<BookingDto> deleteBooking(@Parameter(hidden = true)
                                              @AuthenticationPrincipal AuthenticatedUser currentUser,
                                              @PathVariable("id") String bookingId);
-
-
 }

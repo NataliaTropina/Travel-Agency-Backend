@@ -1,6 +1,5 @@
 package com.example.travelagencybackend.config;
 
-
 import io.swagger.v3.oas.models.Operation;
 import io.swagger.v3.oas.models.PathItem;
 import io.swagger.v3.oas.models.Paths;
@@ -13,7 +12,6 @@ import io.swagger.v3.oas.models.responses.ApiResponse;
 import io.swagger.v3.oas.models.responses.ApiResponses;
 import io.swagger.v3.oas.models.security.SecurityRequirement;
 import io.swagger.v3.oas.models.security.SecurityScheme;
-
 import java.util.Collections;
 
 public class OpenApiDocumentation {
@@ -30,6 +28,7 @@ public class OpenApiDocumentation {
                         .responses(new ApiResponses()
                                 .addApiResponse("200", new ApiResponse().description("Успешный выход"))));
     }
+
     private static PathItem buildAuthenticationPathItem() {
         return new PathItem().post(
                 new Operation()

@@ -1,11 +1,9 @@
 package com.example.travelagencybackend.config;
-
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
-
 import javax.sql.DataSource;
 
 @Profile("prod")
@@ -31,10 +29,9 @@ public class DigitalOceanDataSourceConfiguration {
     public DataSource dataSource() {
         return DataSourceBuilder.create()
                 .driverClassName("org.postgresql.Driver")
-                .url("jdbc:postgresql://" + hostname +":" + port + "/" + database)
+                .url("jdbc:postgresql://" + hostname + ":" + port + "/" + database)
                 .username(username)
                 .password(password)
                 .build();
     }
-
 }

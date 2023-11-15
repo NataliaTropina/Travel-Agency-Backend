@@ -2,7 +2,6 @@ package com.example.travelagencybackend.dto;
 
 import com.example.travelagencybackend.models.Comment;
 import com.example.travelagencybackend.models.Destination;
-import com.example.travelagencybackend.models.User;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;
 import lombok.Builder;

@@ -6,9 +6,9 @@ import com.example.travelagencybackend.security.details.AuthenticatedUser;
 
 public interface RatingsService {
 
-    RatingDto createRating (AuthenticatedUser currentUser, NewRatingDto newRating, String DestinationId);
+    RatingDto createRating(AuthenticatedUser currentUser, NewRatingDto newRating, String DestinationId);
 
-    RatingDto updateRating (NewRatingDto newRating, String ratingId, AuthenticatedUser currentUser);
+    RatingDto updateRating(NewRatingDto newRating, String ratingId, AuthenticatedUser currentUser);
 
-    RatingDto deleteRating (AuthenticatedUser currentUser, String id);
+    RatingDto deleteRating(AuthenticatedUser currentUser, String id);
 }
